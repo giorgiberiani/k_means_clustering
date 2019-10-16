@@ -5,7 +5,7 @@ import pandas as pd
 
 def gender_expertize_mapping(data_source_1, data_source_2):
     '''
-
+    Visualization of gender -> expertize mapping for only verified users in percentage
     :param data_source_1: dataframe
     :param data_source_2: dataframe
     :return:
@@ -29,12 +29,20 @@ def plot_percentage_table(df):
     fig.patch.set_visible(False)
     ax.axis('off')
     ax.axis('tight')
+    ax.set_title('gender expertize mapping')
     ax.table(cellText=df.values, colLabels=df.columns, loc='center')
     fig.tight_layout()
     plt.show()
 
 
 def daily_basis(data_source_1, data_source_2):
+    '''
+    Plots daily basis increment graph of the  gender -> expertize mapping for Male(Software engineer)
+    Female(Graphics designer) for  the second month(October 1-30)
+    :param data_source_1: dataframe
+    :param data_source_2: dataframe
+    :return:
+    '''
     october_users = data_source_2[data_source_2['registration_time'] >= '2019-10-01']
     _october_users = data_source_1[(data_source_1['userID'].isin(october_users['userID']))]
     _october_users.insert(5, "registration_time", october_users.iloc[:, -1].map(lambda date: date.split('-')[-1]), True)
@@ -52,8 +60,6 @@ def daily_basis(data_source_1, data_source_2):
 
 def plot_daily_basis(male_software_engineer_daily_basis, female_graphics_designer_daily_basis):
     '''
-    Plots daily basis increment graph of the  gender -> expertize mapping for Male(Software engineer)
-    Female(Graphics designer) for  the second month(October 1-30)
     :param male_software_engineer_daily_basis: dataframe
     :param female_graphics_designer_daily_basis: dataframe
     :return:

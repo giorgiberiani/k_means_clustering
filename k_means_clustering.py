@@ -4,6 +4,12 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 
 def preprocess_data(data_source_1, data_source_2):
+    '''
+    Removs redundant fields from dataset and encodes categorical values
+    :param data_source_1: dataframe
+    :param data_source_2: dataframe
+    :return: numpy.ndarray -- Preprocessed data
+    '''
     data_source_1 = data_source_1.iloc[:, 3:]
     data_source_2 = data_source_2.iloc[:, 3:-1]
 
@@ -18,6 +24,11 @@ def preprocess_data(data_source_1, data_source_2):
     return train_data
 
 def k_means_clustering(train_data):
+    '''
+    Shows the “elbow” method output and trains the model
+    :param train_data: numpy.ndarray -- Preprocessed data
+    :return: numpy.ndarray -- trained model
+    '''
 
     wcss = []
     for i in range(1, 11):
